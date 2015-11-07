@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class TimeFrame extends JPanel {
     private final Timer timer;
@@ -15,7 +14,9 @@ public class TimeFrame extends JPanel {
     private final JButton start;
     private final JButton stop;
 
-    private final static int SECONDS_PER_HOUR = 3600;
+
+    private static final DateFormat format = new SimpleDateFormat("HH:mm:ss");
+
 
 
     public TimeFrame() {
@@ -66,7 +67,7 @@ public class TimeFrame extends JPanel {
 
 
     private String timeFormat(long count) {
-        DateFormat format = new SimpleDateFormat("HH:mm:ss", Locale.forLanguageTag("RU"));
+//        return format.format(new Date(count));
         return format.format(new Date(count));
 
 //        long hours = count / SECONDS_PER_HOUR;
