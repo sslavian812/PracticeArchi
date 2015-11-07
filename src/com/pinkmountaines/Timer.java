@@ -58,11 +58,12 @@ public class Timer implements Runnable {
     public void run() {
         long startTime = System.currentTimeMillis();
         while (running && !paused) {
-            timeFrame.update(summedTime + (System.currentTimeMillis() - startTime));
+            long timeToDisplay = summedTime + (System.currentTimeMillis() - startTime);
+            timeFrame.update(timeToDisplay);
 
             try (PrintWriter writer = new PrintWriter(LAST_SAVED_TIME_FILE_NAME)) {
                 writer.println(System.currentTimeMillis());
-                writer.println(summedTime);
+                writer.println(timeToDisplay);
             } catch (IOException e) {
                 LOG.severe("Couldn't save time" + e.getMessage());
             }
