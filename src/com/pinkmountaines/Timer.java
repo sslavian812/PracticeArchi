@@ -22,8 +22,7 @@ public class Timer implements Runnable {
     }
 
     private void getInitTime() {
-        try {
-            FileReader reader = new FileReader(LAST_SAVED_TIME_FILE_NAME);
+        try (FileReader reader = new FileReader(LAST_SAVED_TIME_FILE_NAME)) {
             BufferedReader bf = new BufferedReader(reader);
             long savedCurrentTime = Long.parseLong(bf.readLine());
             long lastTimerValue = Long.parseLong(bf.readLine());
@@ -61,11 +60,9 @@ public class Timer implements Runnable {
         while (running && !paused) {
             timeFrame.update(summedTime + (System.currentTimeMillis() - startTime));
 
-            try {
-                PrintWriter writer = new PrintWriter(LAST_SAVED_TIME_FILE_NAME);
+            try (PrintWriter writer = new PrintWriter(LAST_SAVED_TIME_FILE_NAME)) {
                 writer.println(System.currentTimeMillis());
                 writer.println(summedTime);
-                writer.close();
             } catch (IOException e) {
                 LOG.severe("Couldn't save time" + e.getMessage());
             }
