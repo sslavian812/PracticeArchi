@@ -4,7 +4,6 @@ import javax.swing.*;
 
 public class Timer implements Runnable {
 
-    private Thread runThread;
     private boolean running = false;
     private boolean paused = false;
     private TimeFrame timeFrame;
@@ -27,7 +26,7 @@ public class Timer implements Runnable {
     public void startTimer() {
         running = true;
         paused = false;
-        runThread = new Thread(this);
+        Thread runThread = new Thread(this);
         runThread.start();
     }
 
