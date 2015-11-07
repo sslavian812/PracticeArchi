@@ -27,7 +27,8 @@ public class TimeFrame extends JPanel {
     }
 
     public void update(long ms) {
-        time.setText(String.valueOf((ms / 6000) % 1000) + ":" + String.valueOf((ms / 1000) % 1000) + "." + String.valueOf((ms) % 1000));
+        time.setText(String.valueOf((ms / 60000) % 1000) + ":" +
+                String.valueOf((ms / 1000) % 1000) + "." + String.valueOf((ms) % 1000));
     }
 
     public class StartListener implements ActionListener {
