@@ -54,6 +54,15 @@ public class Timer implements Runnable {
         paused = true;
     }
 
+    public void stopTimer() {
+        summedTime = 0;
+        new File(LAST_SAVED_TIME_FILE_NAME).delete();
+        paused = false;
+        running = false;
+        timeFrame.update(0);
+
+    }
+
     @Override
     public void run() {
         long startTime = System.currentTimeMillis();
