@@ -8,7 +8,8 @@ public class Timer implements Runnable {
     private static final Logger LOG = Logger.getLogger(Timer.class.getName());
     private static final String LAST_SAVED_TIME_FILE_NAME = "res/lastUpdateTime";
 
-    private long initTime;
+    private static final int TIMER_WIDTH = 300;
+    private static final int TIMER_HEIGHT = 200;
 
     private boolean running = false;
     private boolean paused = false;
@@ -28,7 +29,7 @@ public class Timer implements Runnable {
             long lastTimerValue = Long.parseLong(bf.readLine());
             this.summedTime = System.currentTimeMillis() - savedCurrentTime + lastTimerValue;
         } catch (IOException | NumberFormatException e) {
-            this.initTime = 0;
+            this.summedTime = 0;
             LOG.severe("Couldn't read file " + e.getMessage());
         }
     }
@@ -36,7 +37,7 @@ public class Timer implements Runnable {
     public static void main(String[] args) {
         TimeFrame t = new TimeFrame();
         JFrame f = new JFrame("Timer");
-        f.setSize(300, 200);
+        f.setSize(TIMER_WIDTH, TIMER_HEIGHT);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
         f.getContentPane().add(t);
